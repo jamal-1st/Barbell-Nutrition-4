@@ -1,0 +1,8 @@
+{  
+    "/api/*": {  
+       "target": "http://maduber-pk-new-maduber.c9users.io/rubino_pizza_admin/api",  
+       "secure": false,  
+       "logLevel": "debug"  
+    }  ,
+    "changeOrigin": true
+ } 

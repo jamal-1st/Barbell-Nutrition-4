@@ -1,0 +1,114 @@
+<ion-content class="class-bg" >
+  <ion-header  no-border>
+    <ion-toolbar mode="ios" class="toolBar">
+      <ion-buttons slot="start" (click)="back()">
+        <ion-icon  mode="md" slot="start" name="arrow-back"></ion-icon>
+        Back
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <div style="margin-top:8%">
+  </div>
+  <div align="center" class="logo-img">
+    <img src="../../assets/img/logo.png" style="height:120px;width:120px" />
+  </div>
+  <!-------------- Form to collect data ------------>
+  <form [formGroup]="todo" (ngSubmit)="register()" no-lines novalidate>
+    <!------------ First name Input ----------->
+    <div class="inputs2">
+      <ion-item no-lines class="inputsBox">
+        <ion-label>
+          <ion-icon name="person" style="color:  black;"></ion-icon>
+        </ion-label>
+        <ion-input no-lines type="text" formControlName="first" placeholder="First Name" clear-input ></ion-input>
+      </ion-item>
+      <ion-item no-lines class="inputsBoxValidation" *ngIf="todo.get('first').errors && todo.get('first').dirty">
+        <p style="color:red;" ion-text *ngIf="todo.get('first').hasError('required')"> First Name Required</p>
+        <p style="color:red;" *ngIf="todo.get('first').hasError('pattern')">Alphabets only!..</p>
+      </ion-item>
+    </div>
+    <!------------ Last name Input ----------->
+    <div class="inputs2">
+      <ion-item no-lines class="inputsBox">
+        <ion-label>
+          <ion-icon name="person" style="color:  black;"></ion-icon>
+        </ion-label>
+        <ion-input no-lines type="text" formControlName="second" placeholder="Last Name" clear-input ></ion-input>
+      </ion-item>
+      <ion-item no-lines class="inputsBoxValidation" *ngIf="todo.get('second').errors && todo.get('second').dirty">
+        <p style="color:red" ion-text *ngIf="todo.get('second').hasError('required')">Last Name Required</p>
+        <p style="color:red" *ngIf="todo.get('second').hasError('pattern')">Alphabets only!..</p>
+      </ion-item>
+    </div>
+    <!------------ Email Input ----------->
+    <div class="inputs2">
+      <ion-item no-lines class="inputsBox">
+        <ion-label>
+          <ion-icon name="mail" style="color:  black;"></ion-icon>
+        </ion-label>
+        <ion-input no-lines type="email" formControlName="email" placeholder="Email" clear-input ></ion-input>
+      </ion-item>
+      <ion-item no-lines class="inputsBoxValidation" *ngIf="todo.get('email').errors && todo.get('email').dirty">
+        <p style="color:red" ion-text *ngIf="todo.get('email').hasError('required')">Email Required</p>
+        <!-- <p style="color:  red" *ngIf="todo.get('email').hasError('pattern')">Email format is not valid.
+        </p> -->
+        <p style="color:  red" *ngIf="todo.get('email').hasError('pattern')">Email format is not valid.
+        </p>
+        <!-- <p style="color:red" ion-text *ngIf="todo.get('email').hasError('maxlength')">Email should not be more
+          than 30 chars</p> -->
+      </ion-item>
+    </div>
+    <!------------ Mobile number  Input ----------->
+    <div class="inputs2">
+      <ion-item no-lines class="inputsBox">
+        <ion-label>
+          <ion-icon name="phone-portrait" style="color:  black;"></ion-icon>
+        </ion-label>
+        <ion-input no-lines type="tel" formControlName="phone" placeholder="Mobile Number" clear-input ></ion-input>
+      </ion-item>
+      <ion-item no-lines class="inputsBoxValidation" *ngIf="todo.get('phone').errors && todo.get('phone').dirty">
+        <p style="color:red" ion-text *ngIf="todo.get('phone').hasError('required')">Mobile Number Required</p>
+        <p style="color:red" ion-text *ngIf="todo.get('phone').hasError('maxlength')">Mobile Number should be
+          equal to 11 digits</p>
+        <p style="color:red" ion-text *ngIf="todo.get('phone').hasError('minlength')">Mobile Number should be
+          equal to 11 digits</p>
+      </ion-item>
+    </div>
+    <!------------ Password Input ----------->
+    <div class="inputs2">
+      <ion-item no-lines class="inputsBox">
+        <ion-label>
+          <ion-icon name="lock" style="color: black;"></ion-icon>
+        </ion-label>
+        <ion-input no-lines type="password" formControlName="password" placeholder="Password" clear-input > </ion-input>
+      </ion-item>
+      <ion-item no-lines class="inputsBoxValidation" *ngIf="todo.get('password').errors && todo.get('password').dirty">
+        <p style="color:red;" ion-text *ngIf="todo.get('password').hasError('required')">Password Required </p>
+        <p style="color:red;" ion-text *ngIf="todo.get('password').hasError('maxlength')">Password should not be
+          more than 20 chars</p>
+        <p style="color:red;" ion-text *ngIf="todo.get('password').hasError('minlength')">Password at least "6" chars
+        </p>
+      </ion-item>
+    </div>
+    <!------------Confirm Password Input ----------->
+    <div class="inputs2">
+      <ion-item no-lines class="inputsBox">
+        <ion-label>
+          <ion-icon name="lock" style="color: black;"></ion-icon>
+        </ion-label>
+        <ion-input no-lines type="password" formControlName="passwordConfirm" placeholder="Confirm Password" clear-input >
+        </ion-input>
+      </ion-item>
+      <ion-item no-lines class="inputsBoxValidation"
+        *ngIf="todo.get('passwordConfirm').errors && todo.get('passwordConfirm').dirty">
+        <p style="color:red;" ion-text *ngIf="todo.get('passwordConfirm').hasError('required')">Password Required </p>
+        <p style="color:red;" ion-text *ngIf="todo.get('passwordConfirm').hasError('maxlength')">Password should not be
+          more than 20 chars</p>
+        <p style="color:red;" ion-text *ngIf="todo.get('passwordConfirm').hasError('minlength')">Password at least "6"
+          chars
+        </p>
+      </ion-item>
+    </div>
+    <ion-button class="btnSubmit" block color="primary" type="submit" [disabled]="!todo.valid">SIGN UP</ion-button>
+  </form>
+</ion-content>

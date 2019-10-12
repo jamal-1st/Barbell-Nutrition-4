@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "336516004035",
+    "firebase_url": "https://barbell-nutrition.firebaseio.com",
+    "project_id": "barbell-nutrition",
+    "storage_bucket": "barbell-nutrition.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336516004035:android:b3e4fa3c733174d5",
+        "android_client_info": {
+          "package_name": "com.barbell.nutrition"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "336516004035-ca0o6id0me4vgmvjclo22euo1rufh3pi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeIhg9FiZB09-Ns6lpHYeaUykGRCuEzQg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}      }
+    }
+  ],
+  "configuration_version": "1"
+}

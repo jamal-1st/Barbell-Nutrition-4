@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar mode="ios" color="primary">
+    <ion-buttons slot="start" (click)="backArrow()">
+      <ion-icon mode="md" slot="start" name="arrow-back"></ion-icon>
+    </ion-buttons>
+    <ion-title style="text-align: cente;margin-left: 0%">
+      ADD ADDRESS
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="todo" (ngSubmit)=" addAddress()">
+    <ion-item>
+      <ion-label></ion-label>
+      <ion-input type="text" formControlName="description" required=true placeholder="Description(eg Home/Work)">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label></ion-label>
+      <ion-input type="text" formControlName="address" required=true placeholder="House#,Street#"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label></ion-label>
+      <ion-input type="text" formControlName="town" required=true placeholder="town"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label></ion-label>
+      <ion-input type="text" formControlName="country" placeholder="country"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label></ion-label>
+      <ion-input type="text" formControlName="postCode" placeholder="PostCode"></ion-input>
+    </ion-item>
+    <button ion-button class="btn" block color="primary" type="submit">Add Address</button>
+  </form>
+</ion-content>

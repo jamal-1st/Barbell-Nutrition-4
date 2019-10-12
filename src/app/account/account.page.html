@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar mode="ios" color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="text-align: cente;margin-left: 0%">
+      SETTING
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!---------- Main content ------------>
+<ion-content padding>
+  <div align="center" class="logo">
+    <img src="../assets/img/logo.png" style="height:135px;width:134px;" />
+    <p style="color: #A0D951;font-weight:bold;margin-top: 0%;">Barbell Nutrition</p>
+  </div>
+  <ion-item color="primary" (click)="profile()" lines="none">
+    <div slot="start">
+      <ion-icon name="person"></ion-icon>
+    </div>
+    <ion-label>My Profile</ion-label>
+    <div slot="end">
+      <ion-icon mode="ios" name="arrow-forward"></ion-icon>
+    </div>
+  </ion-item>
+  <ion-item style="margin-top:3.5%" color="primary" (click)="address()" lines="none">
+    <div slot="start">
+      <ion-icon name="pin"></ion-icon>
+    </div>
+    <ion-label>Address</ion-label>
+    <div slot="end">
+      <ion-icon mode="ios" name="arrow-forward"></ion-icon>
+    </div>
+  </ion-item>
+  <ion-item style="margin-top:3.5%" color="primary" (click)="changePassword()" lines="none">
+    <div slot="start">
+      <ion-icon name="lock"></ion-icon>
+    </div>
+    <ion-label>Change Password</ion-label>
+    <div slot="end">
+      <ion-icon mode="ios" name="arrow-forward"></ion-icon>
+    </div>
+  </ion-item>
+  <!-- <ion-item style="margin-top:3.5%" color="primary" (click)="changePhoneNumber()" lines="none">
+    <div slot="start">
+      <ion-icon name="phone-portrait"></ion-icon>
+    </div>
+    <ion-label>Change Phone Number</ion-label>
+    <div slot="end">
+      <ion-icon mode="ios" name="arrow-forward"></ion-icon>
+    </div>
+  </ion-item> -->
+</ion-content>

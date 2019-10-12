@@ -1,0 +1,30 @@
+.btn{
+  width: 80%;
+  margin-top: 18%;
+
+}
+.item {
+  min-height: 0.5rem;
+  max-height: 4rem;
+--background:#4F7156; 
+  opacity: 0.9;
+  // --border-radius: 8px;
+}
+.class-bg{
+  --color:#fff;
+--background:none;
+background: url(../../assets/img/bg.jpg) 0 0/100% 100% no-repeat;
+background-size: cover;
+}
+// .item-native {
+
+//   // --border-radius: 8px;
+// }
+ion-item {
+  min-height: 8px; 
+}
+
+.logo-img{
+
+  margin-top: 13%;
+}

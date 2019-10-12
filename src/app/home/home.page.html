@@ -1,0 +1,35 @@
+<ion-content class="class-bg">
+  <div style="height:2%">
+  </div>
+  <div align="center" class="logo-img">
+    <img src="../../assets/img/logo.png" style="height:135px;width:134px;" />
+    <p style="font-weight: 300;margin-top:0%;color:#FFFFFF">Barbell Nutrition</p>
+    <div class="btn">
+      <ion-item lines="none" id="login" (click)="login()">
+        <ion-icon style="color: white" name="log-in">
+        </ion-icon>
+        <ion-label style="margin-left:5%;color: white">
+          SIGN IN </ion-label>
+      </ion-item>
+      <ion-item lines="none" color='primary' style="margin-top:3%" (click)="register()">
+        <ion-icon style="color: black" name="person-add">
+        </ion-icon>
+        <ion-label style="margin-left:5%;color: black">
+          SIGN UP
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none" color="light" style="margin-top:3%" (click)="asGuest()">
+        <ion-icon style="color: black" name="person">
+        </ion-icon>
+        <ion-label style="margin-left:5%">
+          PROCEED AS A GUEST
+        </ion-label>
+      </ion-item>
+    </div>
+  </div>
+  <div style="background:transparent;margin-top: 5%">
+    <p style="text-align: center;background:transparent;color:#FFFFFF" (click)="supportForm()">
+      <strong>Inquiry?</strong> <u>We are here to help You!.</u>
+    </p>
+  </div>
+</ion-content>

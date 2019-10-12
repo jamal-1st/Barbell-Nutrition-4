@@ -1,0 +1,144 @@
+<ion-header>
+  <ion-toolbar mode="ios" color="primary">
+    <ion-buttons slot="start" (click)="backArrow()">
+      <ion-icon mode="md" slot="start" name="arrow-back"></ion-icon>
+    </ion-buttons>
+    <ion-title mode="ios">
+      PAYMENT METHOD
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--------------- segment Selection --------->
+  <ion-segment [(ngModel)]="payment" style="margin-top:0.5%" color="secondary" mode='ios'>
+    <ion-segment-button value="cash" layout="icon-end">
+      <ion-icon name="checkmark-circle"></ion-icon>
+      <ion-label>Cash On Delivery</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="creditCard" layout="icon-end" (click)="setepStripe()">
+      <ion-icon name="checkmark-circle"></ion-icon>
+      <ion-label>Credit Card</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <div style="height: 20px">
+  </div>
+  <!--------- Cash ------->
+  <div [ngSwitch]="payment">
+    <div *ngSwitchCase="'cash'" style=" padding: 10px">
+      <table width="100%">
+        <tbody>
+          <tr>
+            <td width="70%">
+              <p class="textStyle">Sub Total</p>
+            </td>
+            <td align="right" class="textStyle" width="30%">
+              {{subTotal|currency:'GBP'}}
+            </td>
+          </tr>
+          <tr>
+            <td width="70%">
+              <h6 class="textStyle">TAX (0%)</h6>
+            </td>
+            <td align="right" class="textStyle" width="30%">
+              {{this.tax |currency:'GBP'}}
+            </td>
+          </tr>
+          <tr>
+            <td width="70%">
+              <h6 class="textStyle">Delivery Charges</h6>
+            </td>
+            <td align="right" class="textStyle" width="30%">
+              {{deliveryCharges |currency:'GBP'}}
+            </td>
+          </tr>
+          <tr>
+            <td width="70%">
+              <h6 class="textStyleT">Total</h6>
+            </td>
+            <td align="right" class="textStyle" width="30%">
+              {{ totalCash|currency:'GBP'}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <ion-button *ngIf='!btnHide' expand="full" class="btnSubmitCash" block color="primary" type="submit"
+          (click)="cashPayment()">
+          <ion-icon slot="end" name="arrow-round-forward"></ion-icon>
+          Place Order
+        </ion-button>
+      </div>
+    </div>
+    <!------------- Credit card ------------>
+    <div *ngSwitchCase="'creditCard'">
+      <div style=" padding: 10px">
+        <table width="100%">
+          <tbody>
+            <tr heigth="40px">
+              <td width="70%">
+                <h6 class="textStyle">Sub Total</h6>
+              </td>
+              <td align="right" class="textStyle" width="30%">
+                {{ subTotal|currency:'GBP'}}
+              </td>
+            </tr>
+            <tr>
+              <td width="70%">
+                <h6 class="textStyle">TAX (0%)</h6>
+              </td>
+              <td align="right" class="textStyle" width="30%">
+                {{ tax|currency:'GBP'}}
+              </td>
+            </tr>
+            <tr>
+              <td width="70%">
+                <h6 class="textStyle">Delivery Charges</h6>
+              </td>
+              <td align="right" class="textStyle" width="30%">
+                {{ deliveryCharges|currency:'GBP'}}
+              </td>
+            </tr>
+            <tr>
+              <td width="70%">
+                <h6 class="textStyle">Transaction Fee</h6>
+              </td>
+              <td align="right" class="textStyle" width="30%">
+                {{ transctionFee|currency:'GBP'}}
+              </td>
+            </tr>
+            <tr>
+              <td width="70%">
+                <h6 class="textStyleT">Total</h6>
+              </td>
+              <td align="right" class="textStyle" width="30%">
+                {{ totalCredit|currency:'GBP'}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--------------- Payment Method ------------>
+      <div>
+        <ion-card>
+          <ion-card-header color="primary">
+            Transaction Fee: ( {{ transctionFee|currency:'GBP'}})
+          </ion-card-header>
+          <ion-card-content>
+            <!-- -------------------  New Stripe Method --------------------->
+            <form action="/" method="post" id="payment-form">
+              <div class="form-row">
+                <div id="card-element">
+                  <!-- a Stripe Element will be inserted here. -->
+                </div>
+                <!-- Used to display Element errors -->
+                <div id="card-errors" role="alert"></div>
+              </div>
+              <ion-button expand='block' size="large" (click)="stripePyaement()">Pay With Stripe</ion-button>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>
+</ion-content>

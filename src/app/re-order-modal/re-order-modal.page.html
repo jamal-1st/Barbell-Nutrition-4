@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar mode="ios" color="primary">
+    <ion-buttons slot="start" (click)="backArrow()">
+      <ion-icon mode="md" slot="start" name="arrow-back"></ion-icon>
+    </ion-buttons>
+    <ion-title mode="ios">
+      RE-ORDER #{{orderId}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!------------------ content for cash ------------------->
+<ion-content *ngIf='cardOrCash == "cash"'>
+  <div style="height: 20px">
+  </div>
+  <!--------- Cash ------->
+  <h4 style="text-align: center;color:#A0D951">OderID# {{orderId}}</h4>
+  <p style="text-align: center">Are you sure to place Order?</p>
+  <ion-button *ngIf='!btnHide' expand="full" class="btnSubmitCash" block color="primary" type="submit"
+    (click)="cashReOrder()">
+    <ion-icon slot="end" name="arrow-round-forward"></ion-icon>
+    Place Order
+  </ion-button>
+  <ion-textarea rows="6" [(ngModel)]="additionalIntruction" maxlength=150 placeholder="Enter additional instructions..."
+  spellcheck=true></ion-textarea>
+</ion-content>
+
+<!------------------ content for card ------------------->
+<ion-content  *ngIf='cardOrCash == "card"'>
+    <div style="height: 20px">
+      </div>
+      <h4 style="text-align: center;color:#A0D951">OderID# {{orderId}}</h4>
+  <p style="text-align: center">Are you sure to place Order?</p>
+  <ion-card>
+    <ion-card-header color="primary">
+      OderID# {{orderId}}
+    </ion-card-header>
+    <ion-card-content>
+      <div style="height: 10px">
+      </div>
+      <form action="/" method="post" id="payment-form">
+        <div class="form-row">
+          <div id="card-element">
+            <!-- a Stripe Element will be inserted here. -->
+          </div>
+          <!-- Used to display Element errors -->
+          <div id="card-errors" role="alert"></div>
+        </div>
+        <ion-button expand='block' (click)="stripePyaement()">Pay With Stripe</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+  <ion-textarea rows="6" [(ngModel)]="additionalIntruction" maxlength=150 placeholder="Enter additional instructions..."
+  spellcheck=true></ion-textarea>
+</ion-content>

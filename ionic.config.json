@@ -1,0 +1,18 @@
+{
+  "name": "pizza_rubinos",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+,
+    "proxies": [
+        {
+          "path": "/api",
+          "proxyUrl": "http://maduber-pk-new-maduber.c9users.io/rubino_pizza_admin/api/"
+          
+
+        }
+      ]
+    }
+
+   

@@ -1,0 +1,61 @@
+table,
+th,
+td {
+    border: 1px solid  rgb(236, 232, 232);;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 5px;
+}
+
+table,
+th {
+    border: 1px solid  rgb(236, 232, 232);;
+    border-collapse: collapse;
+}
+
+.tableH {
+    background-color:  rgb(236, 232, 232);
+}
+
+.tablefoot {
+    height: 33px;
+}
+
+.extra {
+  font-size: 11px;
+  color: black;
+  border-radius: 2px;
+  background:   rgb(236, 232, 232);
+  padding: 0%;
+}
+
+
+.extraItem {
+ 
+    padding: 3%;
+    margin-left: 3%;
+    font-size: 11px;
+  }
+
+.addSubBtn {
+    text-align: center;
+    font-size: 5px;
+    padding: 1px;
+    margin: 1%;
+}
+
+ion-textarea {
+    --background: rgb(236, 232, 232);
+   // --border-radius: 20px;
+    --color: black;
+    --padding-start: 10px;
+  }
+  
+.btnSubmit {
+    text-align: center;
+    height: 45px;
+    margin-top: 7%;
+}

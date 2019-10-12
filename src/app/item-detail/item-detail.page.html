@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar mode="ios" color="primary">
+    <ion-buttons slot="start" (click)="backArrow()">
+      <ion-icon mode="md" slot="start" name="arrow-back"></ion-icon>
+    </ion-buttons>
+    <ion-title mode="ios" style="text-align: cente;margin-left: 0%">
+      ITEM DETAILS
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="padding:2%">
+    <img class="imageItem" [src]="menuItenDetail.image" (load)="menuItenDetail.loaded = true"
+      [hidden]="!menuItenDetail.loaded" />
+    <img class="imageItem" src="../../assets/img/defualtImg.jpg" [hidden]="menuItenDetail.loaded">
+    <h5 class="menuItemName">{{menuItenDetail.menu_item_name}}</h5>
+  </div>
+  <!------------- Menu Item ---------->
+  <div>
+    <ion-list lines="none">
+      <ion-radio-group>
+        <ion-item style="border-bottom: 1px solid lightgray"
+          *ngFor="let itemOption of menuItenDetail.prices;let i = index" (ionSelect)="radioSelect($event,itemOption)">
+          <ion-label>
+            <h6 style="font-size: 16px;color:black;font-weight: bold">{{itemOption.title}}</h6>
+            <p style="font-size: 10px;color:gray">Serving ({{itemOption.serving}}) person(s)</p>
+          </ion-label>
+          <ion-radio class="radioValueMenu" slot="start" [value]="itemOption" [checked]=" i === 0"></ion-radio>
+          <ion-badge slot="end">{{itemOption.price| currency:'GBP' }}</ion-badge>
+          <div style="border-bottom: 0.5px solid lightgray;height:1px;"></div>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+  </div>
+  <!-------------- Radio and CheckBoxes  -------------->
+  <div *ngFor="let menu of menuOption">
+    <div *ngIf="menu.option_type == 'radio'" style="margin-top:6%">
+      <ion-card *ngIf="menu.option_name =='Pick Your Veg'">
+          <ion-card-header style="text-align: center" color="primary">
+            {{menu.option_name}}
+          </ion-card-header>
+          <ion-list lines="none">
+            <!------------- radio defualt check  -------------->
+            <ion-radio-group allow-empty-selection=true>
+              <ion-item style="border-bottom: 1px solid lightgray" *ngFor="let itemsRadio of menu.items;let i = index">
+                <ion-label>{{itemsRadio.item_name}}</ion-label>
+                <ion-radio class="radioValueAdd" slot="start" [value]="itemsRadio" [checked]=" i === 77">
+                </ion-radio>
+                <ion-badge slot="end">{{itemsRadio.item_price| currency:'GBP' }}</ion-badge>
+                <div style="border-bottom: 0.5px solid lightgray;height:1px;"></div>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+        </ion-card>
+      <ion-card *ngIf="menu.option_name == 'Pick Your Rub'">
+        <ion-card-header style="text-align: center" color="primary">
+          {{menu.option_name}}
+        </ion-card-header>
+        <ion-list lines="none">
+          <!------------- radio defualt check  -------------->
+          <ion-radio-group>
+            <ion-item style="border-bottom: 1px solid lightgray" *ngFor="let itemsRadio of menu.items;let i = index">
+              <ion-label>{{itemsRadio.item_name}}</ion-label>
+              <ion-radio class="radioValueAdd" slot="start" [value]="itemsRadio" [checked]=" i === 0">
+              </ion-radio>
+              <ion-badge slot="end">{{itemsRadio.item_price| currency:'GBP' }}</ion-badge>
+              <div style="border-bottom: 0.5px solid lightgray;height:1px;"></div>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+      </ion-card>
+    </div>
+    <!------------- checkbox selection 0 -------------->
+    <div *ngIf="menu.option_type == 'checkbox'" style="margin-top:6%">
+      <ion-card>
+        <ion-card-header style="text-align: center" color="primary">
+          {{menu.option_name}}
+        </ion-card-header>
+        <ion-list lines="none">
+          <ion-item *ngFor="let itemsCheck of menu.items">
+            <ion-checkbox slot="start" class="chaeckBoxValueAdd" [(ngModel)]="itemsCheck.isChecked"
+              [value]="itemsCheck"></ion-checkbox>
+            <ion-label>{{itemsCheck.item_name}}</ion-label>
+            <p slot='end'>{{itemsCheck.item_price| currency:'GBP' }}</p>
+            <div style="border-bottom: 0.5px solid lightgray;height:1px;"></div>
+          </ion-item>
+        </ion-list>
+      </ion-card>
+    </div>
+  </div>
+  <div *ngIf="!platformIsIOS" class="addSubBtn" style="margin-top: 3%">
+    <input type='button' value='-' class='qtyminus' field='quantity' (click)="decrementQty()" />
+    <input type='text' style="color:black;width: 8%;font-size: 15px" name='quantity' [(ngModel)]=qty class='qty' />
+    <input type='button' value='+' class='qtyplus' field='quantity' (click)="incrementQty()" />
+  </div>
+  <div *ngIf="platformIsIOS" align="center">
+    <div>
+      <ion-icon style="font-size: 25px" color="primary" name="remove-circle" (click)="decrementQty()"></ion-icon>
+      <ion-label style="font-size:20px;padding: 4%;padding-right: 5%"> {{qty}}</ion-label>
+      <ion-icon style="font-size: 25px" color="primary" name="add-circle" (click)="incrementQty()"></ion-icon>
+    </div>
+  </div>
+  <ion-button expand="full" class="btnSubmit" block color="primary" type="submit" (click)="addToCart() ">Add to My
+    Basket</ion-button>
+</ion-content>

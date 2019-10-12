@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar mode="ios" color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="text-align: cente;margin-left: 0%">
+      ABOUT US
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="loadUI">
+  <!---------- Card for  about us --------->
+  <ion-card>
+    <ion-card-header>
+      <ion-icon style="color:#737373" name="information-circle"></ion-icon>
+      {{this.venue.intro_title}}
+    </ion-card-header>
+    <ion-card-content>
+      <p style="color:#737373"> {{this.venue.welcome_note}}</p>
+    </ion-card-content>
+  </ion-card>
+  <!--------- Card for timing  ------------>
+  <ion-card>
+    <ion-card-header>
+      <ion-icon style="color:#737373" name="information-circle"></ion-icon>
+      Timing
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item class="otherDays" [ngClass]="{'presentDay':this.today == 'Monday','otherDays':this.today != 'Monday'}"
+        lines='none'>
+        <h4 *ngIf="venue_time.monday_status == 1">Monday: {{venue_time.monday_opening}}
+          - {{venue_time.monday_closing}}</h4>
+        <h4 *ngIf="venue_time.monday_status == 0">Monday: {{venue_time.monday_closing_reason}}</h4>
+      </ion-item>
+      <ion-item [ngClass]="{'presentDay':this.today == 'Tuesday','otherDays':this.today != 'Tuesday'}" lines='none'>
+        <h4 *ngIf="venue_time.tuesday_status == 1">Tuesday: {{venue_time.tuesday_opening}}
+          - {{venue_time.tuesday_closing}}</h4>
+        <h4 *ngIf="venue_time.tuesday_status == 0">Tuesday: {{venue_time.tuesday_closing_reason}}</h4>
+      </ion-item>
+      <ion-item [ngClass]="{'presentDay':this.today == 'Wednesday','otherDays':this.today != 'Wednesday'}" lines='none'>
+        <h4 *ngIf="venue_time.wednesday_status == 1">Wednesday: {{venue_time.wednesday_opening}}
+          - {{venue_time.wednesday_closing}}</h4>
+        <h4 *ngIf="venue_time.wednesday_status == 0">Wednesday: {{venue_time.wednesday_closing_reason}}</h4>
+      </ion-item>
+      <ion-item [ngClass]="{'presentDay':this.today == 'Thursday','otherDays':this.today != 'Thursday'}" lines='none'>
+        <h4 *ngIf="venue_time.thursday_status == 1">Thursday: {{venue_time.thursday_opening}}
+          - {{venue_time.thursday_closing}}</h4>
+        <h4 *ngIf="venue_time.thursday_status == 0">Thursday: {{venue_time.thursday_closing_reason}}</h4>
+      </ion-item>
+      <ion-item [ngClass]="{'presentDay':this.today == 'Friday','otherDays':this.today != 'Friday'}" lines='none'>
+        <h4 *ngIf="venue_time.friday_status == 1">Friday: {{venue_time.friday_opening}}
+          - {{venue_time.friday_closing}}</h4>
+        <h4 *ngIf="venue_time.friday_status == 0">Friday: {{venue_time.friday_closing_reason}}</h4>
+      </ion-item>
+      <ion-item lines='none' [ngClass]="{'presentDay':this.today == 'Saturday','otherDays':this.today != 'Saturday'}">
+        <h4 *ngIf="venue_time.saturday_status == 1">Saturday: {{venue_time.saturday_opening}}
+          - {{venue_time.saturday_closing}}</h4>
+        <h4 *ngIf="venue_time.saturday_status == 0">Saturday: {{venue_time.saturday_closing_reason}}</h4>
+      </ion-item>
+      <ion-item lines='none' [ngClass]="{'presentDay':this.today == 'Sunday','otherDays':this.today != 'Sunday'}">
+        <h4 *ngIf="venue_time.sunday_status == 1">Sunday: {{venue_time.sunday_opening}}
+          - {{venue_time.sunday_closing}}</h4>
+        <h4 *ngIf="venue_time.sunday_status == 0">Sunday: {{venue_time.sundayclosing_reason}}</h4>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <!------------- Card for map -------------->
+  <ion-card>
+    <h6 style="padding:2%">
+      <ion-icon style="color:#737373" name="navigate"></ion-icon>
+      Location
+    </h6>
+    <agm-map [latitude]='latitude' [longitude]='longitude' [mapTypeId]='mapType' [zoom]="zoomMap">
+      <agm-marker [latitude]="latitude" [longitude]="longitude" [label]="''">
+      </agm-marker>
+    </agm-map>
+    <p style="padding:2%;color:#737373">{{setting.address1}}, {{setting.address2}}, {{setting.city}}, {{setting.county}}
+    </p>
+  </ion-card>
+</ion-content>
+
+<!-- <ion-content *ngIf="!loadUI">
+  <div style="height: 30%">
+  </div>
+  <div align='center'>
+    <img [src]="errorPic" style="height:150px;width:150px" />
+    <h5 style="color:#A0D951;font-weight: bold">
+      Server Error!
+    </h5>
+  </div>
+</ion-content> -->

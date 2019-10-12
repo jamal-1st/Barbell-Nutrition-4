@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar mode="ios" color="primary">
+    <ion-buttons slot="start" (click)="backArrow()">
+      <ion-icon mode="md" slot="start" name="arrow-back"></ion-icon>
+    </ion-buttons>
+    <ion-title>
+      {{this.menuName}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="class-bg">
+    <div *ngFor="let item of this.menuItem;let even = even; let odd = odd;let i = index"
+      style="padding-left:2%;padding-right: 2%;margin-top: 2.2%">
+      <div *ngIf="even" style="background:white;height:149px;" (click)="itemDetail(item)">
+        <div style="float:left;;width:50%">
+          <img class="image" style="height: 149px;width: 100%" [src]="item.image" (load)="item.loaded = true"
+            [hidden]="!item.loaded" />
+          <img style="height: 149px;width: 100%" src="../../assets/img/defualtImg.jpg" [hidden]="item.loaded">
+        </div>
+        <div align="center" style="float:left;width:50%;font-size:13px; background:white;margin-top: 5%;padding: 3%;">
+          <h5 style="font-weight: bold;color:#A0D951">{{item.menu_item_name}}</h5>
+        </div>
+      </div>
+      <!------------- For different UI ----------->
+      <div *ngIf="odd" style="background:#A0D951;height:149px;" (click)="itemDetail(item)">
+        <div align="center" style="float:left;width:50%;font-size:13px;color:white;margin-top: 5%;padding: 3%">
+          <h5 style="font-weight: bold">{{item.menu_item_name}}</h5>
+        </div>
+        <div style="float:left;;width:50%">
+          <img class="image" style="height: 149px;width: 100%" [src]="item.image" (load)="item.loaded = true"
+            [hidden]="!item.loaded" />
+          <img class="image" style="height: 149px;width: 100%" src="../../assets/img/defualtImg.jpg"
+            [hidden]="item.loaded">
+        </div>
+      </div>
+    </div>
+    <!---------------- Fab button ------------>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="cartOpen()">
+        <p style="margin-top:-15px;margin-left:12px">{{totalQty}}</p>
+        <ion-icon style="margin-top:5px;margin-left:-18px" name="cart">
+        </ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <div style="margin-top: 2.5%">
+    </div>
+</ion-content>

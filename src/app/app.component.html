@@ -1,0 +1,50 @@
+<div *ngIf="showSplash" class="splash">
+  <div id="animation" class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+<ion-app>
+  <ion-split-pane  when="(min-width: 700px)">
+    <ion-menu id="Menu" menu-id="Menu">
+      <ion-header>
+        <ion-toolbar mode="ios" color="primary">
+          <ion-title>MENU</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list lines="none">
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+            <ion-item style="padding:1% 0% 1% 0%;border-bottom: .5px solid 	#D3D3D3;height: 8% "
+              [routerDirection]="'root'" [routerLink]="[p.url]">
+              <ion-icon style="margin-left:2%" color="primary" slot="start" [name]="p.icon"></ion-icon>
+              <ion-label style="font-weight:normal;color:#605c5c">
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-menu id="demoMenu" menu-id="demoMenu">
+      <ion-header>
+        <ion-toolbar mode="ios" color="primary">
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list lines="none">
+          <ion-menu-toggle auto-hide="false" *ngFor="let m of demoMenu">
+            <ion-item style="padding:1% 0% 1% 0%;border-bottom: .5px solid 	#D3D3D3;height: 8% "
+              [routerDirection]="'root'" [routerLink]="[m.url]">
+              <ion-icon style="margin-left:2%" color="primary" slot="start" [name]="m.icon"></ion-icon>
+              <ion-label style="font-weight:normal;color:#605c5c">
+                {{m.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

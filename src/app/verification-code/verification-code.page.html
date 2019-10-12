@@ -1,0 +1,49 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="ios" color="primary">
+    <!-- <ion-buttons slot="start" (click)="backArrow()">
+      <ion-icon mode="md" slot="start" name="arrow-back"></ion-icon>
+    </ion-buttons> -->
+    <ion-title>
+      VERIFICATION CODE
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!------------- Main content ----------->
+<ion-content class="class-bg">
+  <div style="height:10%"></div>
+  <div align="center" class="logo-img">
+    <img src="../../assets/img/logo.png" style="height:135px;width:134px" />
+    <p style="font-weight: 300;margin-top:0%;color:#FFFFFF">Barbell Nutrition</p>
+  </div>
+  <form [formGroup]="todo" (ngSubmit)="verification()" no-lines novalidate>
+    <div class="inputs1">
+      <ion-item no-lines class="inputsBox">
+        <ion-label>
+          <ion-icon name="lock" style="color:  black;"></ion-icon>
+        </ion-label>
+        <ion-input no-lines type="phone" formControlName="code" placeholder=" Verification code"></ion-input>
+      </ion-item>
+      <ion-item no-lines class="inputsBoxValidation" *ngIf="todo.get('code').errors && todo.get('code').dirty">
+        <p style="color:  black;" ion-text *ngIf="todo.get('code').hasError('required')">Required Code</p>
+        <p style="color:  black;" ion-text *ngIf="todo.get('code').hasError('maxlength')">Code should not be
+          more than 6 digits</p>
+      </ion-item>
+    </div>
+    <ion-button class="btnSubmit" block color="primary" type="submit" [disabled]="!todo.valid">
+      VERIFY ME
+    </ion-button>
+  </form>
+  <ion-button class="btnSubmit" block color="primary" [disabled]="disableBtn" (click)='resendCode()'>
+    {{timer}}
+  </ion-button>
+
+  <div style="padding:5%; text-align: left;
+  line-height: 22px;
+  font-family: monospace;
+  font-size: 18px;
+  padding: 0.7em;">
+    <p style="color:#fff">{{ messageForVerification}}
+    </p>
+  </div>
+</ion-content>

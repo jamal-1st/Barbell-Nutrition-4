@@ -1,0 +1,189 @@
+<ion-header>
+  <ion-toolbar mode="ios" color="primary">
+    <ion-buttons type="submit" slot="start" (click)="backArrow()">
+      <ion-icon mode="md" slot="start" name="arrow-back"></ion-icon>
+    </ion-buttons>
+    <ion-title mode="ios">
+      ORDER STATUS
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!------------- Main content ----------->
+<ion-content>
+  <!--------- segment Selection ---------->
+  <ion-segment color="secondary" style="margin-top:1%" [(ngModel)]="orderStatusSegment" mode='ios'>
+    <ion-segment-button color="secondary" value="order" layout="icon-end">
+      <ion-label c style="font-weight: bold">Order</ion-label>
+    </ion-segment-button>
+    <ion-segment-button color="secondary" value="status" layout="icon-end">
+      <ion-label style="font-weight: bold">Status</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <!--------- segment order ------->
+  <div [ngSwitch]="orderStatusSegment">
+    <div *ngSwitchCase="'order'" style="padding:10px">
+      <!-------- ion-row ---------->
+      <ion-row>
+        <ion-col size="6">
+          <h5 style="font-size: 15">ORDER ID# {{orderId}}</h5>
+          <div style="float:left;font-size:7px;width:50%;font-weight:bold">
+            <p>PAYMENT STATUS:</p>
+            <p>PAYMENT BY:</p>
+          </div>
+          <div style="float:left;width:50%;font-size:7px">
+            <p *ngIf="paymentStatus == 0">Not paid</p>
+            <p *ngIf="paymentStatus == 1">Paid</p>
+            <p>{{paymentMethod}}</p>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <h5 style="font-size:15">{{addressDetail.title}}</h5>
+          <div style="font-size:12px">
+            <p><u>{{addressDetail.addressLine1}}, {{addressDetail.town}}, {{addressDetail.county}}</u></p>
+          </div>
+        </ion-col>
+      </ion-row>
+      <!-------- table ------->
+      <table width="100%">
+        <thead width="100%">
+          <tr class="tableHTiming">
+            <th align="center" width="30%" style="color:white">TIMING</th>
+            <th align="center" width="70%" style="color:white">{{orderDetail.created_at}}</th>
+          </tr>
+        </thead>
+      </table>
+      <table width="100%">
+        <thead width="100%">
+          <tr class="tableH">
+            <th align="center" width="56%">ITEM</th>
+            <th align="center" width="24%">QTY</th>
+            <th align="center" width="20%">PRICE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let orderItem of  orderItem;let i = index">
+            <td width="56%" style="padding:5px">
+              <p style="color:black;font-size:12px;font-weight:bold"> {{orderItem.menu_item_name}}</p>
+              <p style="color:gray;font-size:12px;font-weight:bold;padding:0px"> {{orderItem.menu_title}}
+              </p>
+              <div class="extra" *ngFor="let extra of  orderItem.options">
+                <p class="extraItem">{{extra.item_name}}<br>price: ({{extra.item_price | currency:'GBP'}})
+                </p>
+              </div>
+            </td>
+            <td width="24%" align="center">
+              <p style="color:black;font-size:16px"> {{orderItem.quantity}}</p>
+            </td>
+            <td width="20%" align="right" style="font-size:18px">
+              <p style="color:black;font-size:15px">{{orderItem.item_sum | currency:'GBP'}}</p>
+            </td>
+          </tr>
+          <!-------- table foot ------>
+        <tfoot>
+          <tr class="tablefoot">
+            <td align="right" colspan="2">
+              <h6 class="textStyle">SubTotal</h6>
+            </td>
+
+            <td align="right" colspan="1">
+              <h6 class="textStyle">{{subTotal | currency:'GBP'}}</h6>
+            </td>
+          </tr>
+          <tr class="tablefoot">
+            <td align="right" colspan="2">
+              <h6 class="textStyle">Tax</h6>
+            </td>
+            <td align="right" colspan="1">
+              <h6 class="textStyle">{{taxRate | currency:'GBP'}}</h6>
+            </td>
+          </tr>
+          <tr class="tablefoot">
+            <td align="right" colspan="2">
+              <h6 class="textStyle">Delivery Charges</h6>
+            </td>
+            <td align="right" colspan="1">
+              <h6 class="textStyle">{{shippingCharges | currency:'GBP'}}</h6>
+            </td>
+          </tr>
+          <tr *ngIf="transctionRate != 0" class="tablefoot">
+            <td align="right" colspan="2">
+              <h6 class="textStyle">Transaction Fee</h6>
+            </td>
+            <td align="right" colspan="1">
+              <h6 class="textStyle">{{transctionRate | currency:'GBP'}}</h6>
+            </td>
+          </tr>
+          <tr class="tablefoot">
+            <td align="right" colspan="2" style="font-weight:bold;">Total</td>
+            <td align="right" colspan="1" style="font-weight:bold;">
+              {{total  | currency:'GBP'}}
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <!---------- segment status -------->
+    <div *ngSwitchCase="'status'" style="padding: 10px;font-weight: bold">
+      <ion-list>
+        <ion-item-divider>
+          <ion-label color="primary">
+            Where is my Order?
+          </ion-label>
+        </ion-item-divider>
+        <ion-item>
+          <p style="font-weight: normal">Order placed</p>
+          <div slot="end">
+            <ion-icon *ngIf="orderStatus == 0" color='primary' style="font-size: 40px" name="checkmark"></ion-icon>
+          </div>
+        </ion-item>
+        <ion-item>
+          <p style="font-weight: normal">Rejected</p>
+          <div slot="end">
+            <ion-icon *ngIf="orderStatus == 1" color='primary' style="font-size: 40px" name="checkmark"></ion-icon>
+          </div>
+        </ion-item>
+        <ion-item>
+          <p style="font-weight: normal">Accepted</p>
+          <div slot="end">
+            <ion-icon *ngIf="orderStatus == 2" color='primary' style="font-size: 40px" name="checkmark"></ion-icon>
+          </div>
+        </ion-item>
+        <ion-item>
+          <p style="font-weight: normal">Preparing</p>
+          <div slot="end">
+            <ion-icon *ngIf="orderStatus == 3" color='primary' style="font-size: 40px" name="checkmark"></ion-icon>
+          </div>
+        </ion-item>
+        <ion-item>
+          <p style="font-weight: normal">Delivering</p>
+          <div slot="end">
+            <ion-icon *ngIf="orderStatus == 4" color='primary' style="font-size: 40px" name="checkmark"></ion-icon>
+          </div>
+        </ion-item>
+        <ion-item>
+          <p style="font-weight: normal">Delivered</p>
+          <div slot="end">
+            <ion-icon *ngIf="orderStatus == 5" color='primary' style="font-size: 40px" name="checkmark"></ion-icon>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+
+</ion-content>
+
+<!------- Footer ------ -->
+<ion-footer no-border>
+  <div *ngIf=dataServices.restuarantClosed>
+    <ion-button expand="full" block color="danger" (click)="presentModal()">
+      Re-Order
+    </ion-button>
+  </div>
+  <div *ngIf="dataServices.restuarantClosed == false">
+    <p  style="color: red;text-align: center;">
+      {{availabilityMsg}}
+    </p>
+  </div>
+
+</ion-footer>

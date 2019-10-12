@@ -1,0 +1,29 @@
+.ion-item {
+  border-color: red;
+}
+
+.ion-item-border {
+  border-radius: 10px !important;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.item-native {
+  border-color: var(--ion-color-shade);
+  border-radius: 10px;
+}
+
+.item {
+  // --border-radius: 10px;
+  --box-shadow: 4.5px 4.5px #f0ebeb;
+}
+
+.logo {
+  border-radius: 2px;
+  background: rgb(236, 232, 232);;
+  height: 190px;
+  padding-top: 4%;
+  margin-bottom: 10%;
+}

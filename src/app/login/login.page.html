@@ -1,0 +1,51 @@
+<ion-content class="class-bg">
+  <ion-header no-border>
+    <ion-toolbar mode="ios" class="toolBar">
+      <ion-buttons slot="start" (click)="back()">
+        <ion-icon mode="md" slot="start" name="arrow-back"></ion-icon>
+        Back
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <div style="margin-top:16%">
+  </div>
+  <div align="center" class="logo-img">
+    <img src="../assets/img/logo.png" style="height:135px;width:134px;" />
+    <p style="font-weight: 300;margin-top:0%;color:#FFFFFF">Barbell Nutrition</p>
+  </div>
+  <form [formGroup]="todo" (ngSubmit)="getTokenForFirebase()" no-lines novalidate>
+    <div class="inputs1">
+      <ion-item no-lines class="inputsBox">
+        <ion-label>
+          <ion-icon name="mail" style="color:  black;"></ion-icon>
+        </ion-label>
+        <ion-input no-lines type="email" formControlName="email" placeholder="Email" clear-input></ion-input>
+      </ion-item>
+      <ion-item no-lines class="inputsBoxValidation" *ngIf="todo.get('email').errors && todo.get('email').dirty">
+        <p style="color: red;" ion-text *ngIf="todo.get('email').hasError('required')">Email required.</p>
+        <p style="color:  red" *ngIf="todo.get('email').hasError('pattern')">Email format is not valid.
+        </p>
+      </ion-item>
+    </div>
+    <div class="inputs2">
+      <ion-item no-lines class="inputsBox">
+        <ion-label>
+          <ion-icon name="lock" style="color: black;"></ion-icon>
+        </ion-label>
+        <ion-input no-lines type="password" formControlName="password" placeholder="Password" clear-input> </ion-input>
+      </ion-item>
+      <ion-item no-lines class="inputsBoxValidation" *ngIf="todo.get('password').errors && todo.get('password').dirty">
+        <p style="color:  red;" ion-text *ngIf="todo.get('password').hasError('required')">Password required.</p>
+        <p style="color:  red;" ion-text *ngIf="todo.get('password').hasError('maxlength')">Password shouldn't be
+          more than 20 chars.</p>
+        <p style="color:  red;" ion-text *ngIf="todo.get('password').hasError('minlength')">Password at least "6"
+          chars.</p>
+      </ion-item>
+    </div>
+    <ion-button mode="ios" class="btnSubmit" block color="primary" type="submit" [disabled]="!todo.valid">SIGN IN
+    </ion-button>
+  </form>
+  <p class="linkForget" (click)="forgotPassword()">
+    <u>Forgot password?</u> 
+  </p>
+</ion-content>

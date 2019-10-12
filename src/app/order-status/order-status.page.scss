@@ -1,0 +1,57 @@
+table,
+th,
+td {
+  border: 1px solid  rgb(236, 232, 232);
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 5px;
+}
+
+table,
+th {
+  border: 1px solid  rgb(236, 232, 232);
+  border-collapse: collapse;
+}
+
+.tableH {
+  background-color:  rgb(236, 232, 232);
+}
+.tableHTiming{
+  background-color:#A0D951;
+}
+.tablefoot {
+  height: 33px;
+}
+
+.extra {
+  // border-radius: 10px;
+  font-size: 14px;
+  color: black;
+  background:  rgb(236, 232, 232);
+  padding: 0%;
+}
+
+.extraItem {
+  padding: 5%;
+  font-size: 8px;
+}
+
+.addSubBtn {
+  text-align: center;
+  font-size: 5px;
+  padding: 1px;
+  margin: 1%;
+}
+.btnSubmit{
+  --background:red;
+}
+
+ion-textarea {
+  --background: gainsboro;
+  --border-radius: 20px;
+  --color: black;
+  --padding-start: 10px;
+}

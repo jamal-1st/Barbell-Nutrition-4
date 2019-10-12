@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar mode="ios" color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="text-align: cente;margin-left: 0%">
+      CART
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-------- content when card not empty ----->
+<ion-content *ngIf="!cartEmpty">
+  <table width="100%">
+    <thead>
+      <tr class="tableH">
+        <th width="8%">
+        </th>
+        <th align="center" width="48%">ITEM</th>
+        <th align="center" width="24%">QTY</th>
+        <th align="center" width="20%">PRICE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cartItem of cartDataArray;let i = index">
+        <td width="8%">
+          <ion-icon style="font-size: 20px" color="primary" name="close-circle"
+            (click)="alertDelteForItem(i,cartItem.menuItemName)"></ion-icon>
+        </td>
+        <td width="48%" style="padding:10px">
+          <p style="color:black;font-size:14px;font-weight:bold"> {{cartItem.menuItemName}}</p>
+          <p style="color:gray;font-size:12px;font-weight:bold;padding:0px">
+            ({{cartItem.radioMenuItemArray[0].title}})
+          </p>
+          <div class="extra" *ngFor="let extra of  cartItem.checkBoxOptionArray">
+            <p class="extraItem" style="color:black;font-size:11px">{{extra.item_name}}<br>price:
+              ({{extra.item_price | currency:'GBP'}})</p>
+          </div>
+          <div class="extra" *ngFor="let extraRadio of cartItem.radioOptionArray">
+            <p class="extraItem" style="color:black;font-size:11px">{{extraRadio.item_name}}<br>price:
+              ({{extraRadio.item_price | currency:'GBP'}})</p>
+          </div>
+        </td>
+        <td width="24%" align="center">
+          <ion-icon style="font-size: 17px" color="primary" name="remove-circle"
+            (click)="decrementQty(cartItem.quantity,i)"></ion-icon>
+          <ion-label style="font-size:17px;padding: 4%;padding-right: 5%"> {{cartItem.quantity}}</ion-label>
+          <ion-icon style="font-size: 17px" color="primary" name="add-circle"
+            (click)="incrementQty(cartItem.quantity,i)"></ion-icon>
+        </td>
+        <td width="20%" align="right" style="font-size:17px">
+          {{cartItem.qtyAndItemSum | currency:'GBP'}}</td>
+      </tr>
+    <tfoot>
+      <tr class="tablefoot">
+        <td align="right" colspan="3">SubTotal</td>
+        <td align="right" colspan="1">{{subTotal | currency:'GBP'}}</td>
+      </tr>
+      <tr class="tablefoot">
+        <td align="right" colspan="3" style="font-weight:bold;">Total</td>
+        <td align="right" colspan="1" style="font-weight:bold;">
+          {{subTotal | currency:'GBP'}}
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  <!-- <ion-card> -->
+    <ion-textarea rows="6" [(ngModel)]="additionalIntruction" maxlength=150
+      placeholder="Enter additional instructions..." spellcheck=true></ion-textarea>
+  <!-- </ion-card> -->
+</ion-content>
+<!--------- when card empty -------->
+<ion-content *ngIf="cartEmpty">
+  <div style="height: 20%">
+  </div>
+  <div align='center'>
+    <img [src]="emptyCart" style="height:110px;width:100px" />
+    <h5 style="color:#A0D951;font-weight: bold">
+      Your Basket is empty!
+    </h5>
+    <p style="color:grey">
+      Looks like you haven't made your menu yet.
+    </p>
+  </div>
+</ion-content>
+<!------- Footer -------->
+<ion-footer no-border *ngIf="!cartEmpty">
+  <ion-button expand="full" class="btnSubmit" block color="primary" type="submit" (click)="clearAllCartCclickOnBtn()">
+    <ion-icon slot="end" name="arrow-round-forward"></ion-icon>
+    Select delivery address
+  </ion-button>
+</ion-footer>

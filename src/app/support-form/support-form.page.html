@@ -1,0 +1,84 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="ios" color="primary">
+    <ion-buttons slot="start" (click)="backArrow()">
+      <ion-icon mode="md" slot="start" name="arrow-back"></ion-icon>
+    </ion-buttons>
+    <ion-title>
+      SUPPORT FORM
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="class-bg">
+  <div style="background:transparent;margin-top: 2%">
+    <p style="text-align: center;background:transparent;color:#FFFFFF;font-size: large;" (click)="supportForm()">
+      We are here to help 'You'
+    </p>
+  </div>
+  <!-------------- Form to collect data ------------>
+  <form [formGroup]="todo" (ngSubmit)="supportFrom()" no-lines novalidate>
+    <!------------ First name Input ----------->
+    <div class="inputs2">
+      <ion-item no-lines class="inputsBox">
+        <ion-label>
+          <ion-icon name="person" style="color:  black;"></ion-icon>
+        </ion-label>
+        <ion-input no-lines type="text" formControlName="name" placeholder="Full Name" clear-input></ion-input>
+      </ion-item>
+      <ion-item no-lines class="inputsBoxValidation" *ngIf="todo.get('name').errors && todo.get('name').dirty">
+        <p style="color:red;" ion-text *ngIf="todo.get('name').hasError('required')"> Full Name Required</p>
+        <p style="color:red;" *ngIf="todo.get('name').hasError('pattern')">Alphabets only!..</p>
+      </ion-item>
+    </div>
+    <!------------ Email Input ----------->
+    <div class="inputs2">
+      <ion-item no-lines class="inputsBox">
+        <ion-label>
+          <ion-icon name="mail" style="color:  black;"></ion-icon>
+        </ion-label>
+        <ion-input no-lines type="email" formControlName="email" placeholder="Email" clear-input></ion-input>
+      </ion-item>
+      <ion-item no-lines class="inputsBoxValidation" *ngIf="todo.get('email').errors && todo.get('email').dirty">
+        <p style="color:red" ion-text *ngIf="todo.get('email').hasError('required')">Email Required</p>
+        <p style="color:  red" *ngIf="todo.get('email').hasError('pattern')">Email format is not valid.
+        </p>
+      </ion-item>
+    </div>
+    <!------------ Mobile number  Input ----------->
+    <div class="inputs2">
+      <ion-item no-lines class="inputsBox">
+        <ion-label>
+          <ion-icon name="phone-portrait" style="color:  black;"></ion-icon>
+        </ion-label>
+        <ion-input no-lines type="tel" formControlName="phone" placeholder="Mobile Number" clear-input></ion-input>
+      </ion-item>
+      <ion-item no-lines class="inputsBoxValidation" *ngIf="todo.get('phone').errors && todo.get('phone').dirty">
+        <p style="color:red" ion-text *ngIf="todo.get('phone').hasError('required')">Mobile Number Required</p>
+        <p style="color:red" ion-text *ngIf="todo.get('phone').hasError('maxlength')">Mobile Number should be
+          equal to 11 digits</p>
+        <p style="color:red" ion-text *ngIf="todo.get('phone').hasError('minlength')">Mobile Number should be
+          equal to 11 digits</p>
+      </ion-item>
+    </div>
+
+    <div class="inputs2">
+      <ion-item no-lines class="inputsBox">
+        <ion-label>
+          <ion-icon name="person" style="color:  black;"></ion-icon>
+        </ion-label>
+        <ion-input no-lines type="text" formControlName="subject" placeholder="Subject" clear-input></ion-input>
+      </ion-item>
+      <ion-item no-lines class="inputsBoxValidation" *ngIf="todo.get('subject').errors && todo.get('subject').dirty">
+        <p style="color:red;" ion-text *ngIf="todo.get('subject').hasError('required')"> Full Name Required</p>
+        <p style="color:red;" *ngIf="todo.get('subject').hasError('pattern')">Alphabets only!..</p>
+      </ion-item>
+    </div>
+    <div class="inputs2">
+      <ion-item no-lines class="inputsBox">
+        <ion-textarea rows="3" formControlName="message" maxlength=120 placeholder="Message.." spellcheck=true>
+        </ion-textarea>
+      </ion-item>
+    </div>
+    <ion-button class="btnSubmit" block color="primary" type="submit" [disabled]="!todo.valid">SEND MESSAGE</ion-button>
+  </form>
+</ion-content>

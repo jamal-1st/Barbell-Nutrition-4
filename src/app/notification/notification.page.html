@@ -1,0 +1,199 @@
+<ion-header>
+  <ion-toolbar mode="ios" color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title mode="ios">
+      Notifications
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<!--------------- No notification content  ---------------->
+<ion-content *ngIf="noNotification">
+  <div style="height: 25%">
+  </div>
+  <div align='center'>
+    <img [src]="emptyNotification" style="height:120px;width:110px" />
+  </div>
+  <h5 align='center' style="color:#A0D951;font-weight: bold">
+    There are no notifications.
+  </h5>
+</ion-content>
+<!--------------- Main content  ---------------->
+<ion-content *ngIf="dataSkelton">
+  <div style="width: 92%;margin-left:4%">
+    <ion-card *ngFor="let item of notificationArray">
+      <img style="height:190px" [src]="item.image_url" (load)="item.loaded = true" [hidden]="!item.loaded" />
+      <img style="height:190px" src="../../assets/img/defualtImg.jpg" [hidden]="item.loaded">
+      <ion-card-header>
+        <ion-row>
+          <ion-col size="11">
+            <ion-card-subtitle>Date: {{item.created_at}}</ion-card-subtitle>
+          </ion-col>
+          <ion-col size="1">
+            <ion-icon style="font-size: 22px" color="primary" name="trash" (click)="alertDelteForItem(item.id)">
+            </ion-icon>
+          </ion-col>
+        </ion-row>
+        <ion-card-title>{{item.title}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{item.message}}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+
+<!------------- Skelton text content --------------->
+<ion-content *ngIf="!dataSkelton">
+  <ion-card>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-card-header>
+      <ion-row>
+        <ion-col size="11">
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-skeleton-text animated style="width: 10%"></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-label>
+      <h3>
+        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+      </h3>
+      <p>
+        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+      </p>
+      <p>
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      </p>
+    </ion-label>
+  </ion-card>
+  <ion-card>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-card-header>
+      <ion-row>
+        <ion-col size="11">
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-skeleton-text animated style="width: 10%"></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-label>
+      <h3>
+        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+      </h3>
+      <p>
+        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+      </p>
+      <p>
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      </p>
+    </ion-label>
+  </ion-card>
+  <ion-card>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-card-header>
+      <ion-row>
+        <ion-col size="11">
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-skeleton-text animated style="width: 10%"></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-label>
+      <h3>
+        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+      </h3>
+      <p>
+        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+      </p>
+      <p>
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      </p>
+    </ion-label>
+  </ion-card>
+  <ion-card>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-card-header>
+      <ion-row>
+        <ion-col size="11">
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-skeleton-text animated style="width: 10%"></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-label>
+      <h3>
+        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+      </h3>
+      <p>
+        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+      </p>
+      <p>
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      </p>
+    </ion-label>
+  </ion-card>
+  <ion-card>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-card-header>
+      <ion-row>
+        <ion-col size="11">
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-skeleton-text animated style="width: 10%"></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-label>
+      <h3>
+        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+      </h3>
+      <p>
+        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+      </p>
+      <p>
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      </p>
+    </ion-label>
+  </ion-card>
+  <ion-card>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-card-header>
+      <ion-row>
+        <ion-col size="11">
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-skeleton-text animated style="width: 10%"></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-label>
+      <h3>
+        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+      </h3>
+      <p>
+        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+      </p>
+      <p>
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      </p>
+    </ion-label>
+  </ion-card>
+</ion-content>

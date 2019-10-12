@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar mode="ios" color="primary">
+    <ion-buttons mode="ios" slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="text-align: cente;margin-left: 0%">
+      MENU
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!------------Main content ------------->
+<ion-content no-padding *ngIf="mainContent">
+  <div *ngFor="let item of categoriesArray" style="margin-top: 1%">
+    <ion-card no-padding (click)="goToItemsList(item.category_id)">
+      <div class="image">
+        <img style="  height: 150px;width: 100%" [src]="item.image" (load)="item.loaded = true"
+          [hidden]="!item.loaded" />
+        <img class="image" style="  height: 150px;width: 100%" src="../../assets/img/defualtImg.jpg"
+          [hidden]="item.loaded">
+        <div class="layer"></div>
+      </div>
+      <div class="card-title">{{item.category_name}}
+        <!-- <ion-icon  ios="ios-arrow-forward"></ion-icon> -->
+      </div>
+    </ion-card>
+  </div>
+  <!------------- Fab button ------------>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="cartOpen()">
+      <p style="margin-top:-15px;margin-left:8px">{{ this.totalQty}}</p>
+      <ion-icon style="margin-top:5px;margin-left:-18px" name="cart">
+      </ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <!------------- Heigth for end of menu------------>
+  <div style="height: 10px">
+  </div>
+</ion-content>
+<!------------- Skelton UI content -------------->
+<ion-content *ngIf="dataSkelton">
+  <div class="ion-padding custom-skeleton">
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 60%;margin-left: 20%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+  </div>
+  <div class="ion-padding custom-skeleton">
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 60%;margin-left: 20%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+  </div>
+  <div class="ion-padding custom-skeleton">
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 60%;margin-left: 20%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+  </div>
+  <div class="ion-padding custom-skeleton">
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 60%;margin-left: 20%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+  </div>
+  <div class="ion-padding custom-skeleton">
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 60%;margin-left: 20%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+  </div>
+</ion-content>
+<!----------- Error content ----------->
+<ion-content *ngIf="errorScreen">
+  <div style="height: 30%">
+  </div>
+  <div align='center'>
+    <img [src]="errorPic" style="height:150px;width:150px" />
+    <h5 style="color:#A0D951;font-weight: bold">
+      Server Error!
+    </h5>
+  </div>
+</ion-content>
+<!------------- Restuarant closed content-------------->
+<ion-content *ngIf="!avaliablity">
+  <div style="height: 10%">
+  </div>
+  <div align='center'>
+    <img [src]="closedRestuarantImage" style="height:150px;width:150px" />
+    <h5 style="color:#A0D951;font-weight: bold">
+      Restaurant Closed
+    </h5>
+    <p style="color:gray">{{ this.restuarantAvaliablityMessage }}</p>
+  </div>
+
+</ion-content>

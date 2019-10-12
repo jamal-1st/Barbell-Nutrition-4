@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar mode="ios" color="primary">
+    <ion-buttons slot="start" (click)="backArrow()">
+      <ion-icon mode="md" slot="start" name="arrow-back"></ion-icon>
+    </ion-buttons>
+    <ion-title style="text-align: cente;margin-left: 0%">
+      ADDRESS
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!--------- content for empty cart ------->
+<ion-content *ngIf="emptyAddress">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addDeliveryAddress()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <div style="height: 20%">
+  </div>
+  <div align='center'>
+    <img [src]="imageAddress" style="height:110px;width:100px" />
+    <h5 style="color:#A0D951;font-weight: bold">
+      No address Found!
+    </h5>
+  </div>
+</ion-content>
+
+<!--------- content for cart ------->
+<ion-content padding *ngIf="!emptyAddress">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addDeliveryAddress()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-list-header *ngIf="!emptyAddress" style="margin-bottom: 3%" color="primary">
+    Delivery Address
+  </ion-list-header>
+  <ion-grid>
+    <ion-radio-group>
+      <ion-row *ngFor="let item of addressArray;let i = index" style="margin-bottom: 1%" class="grid">
+        <ion-col size="11">
+          <ion-item lines="none">
+            <ion-label>
+              <h4 class="addressTitle">{{item.title}}</h4>
+              <p class="address">{{item.addressLine1}},{{item.town}}</p>
+            </ion-label>
+            <ion-radio class="addAddress" color="primary" slot="start" [value]="item" mode='md'
+              (ionSelect)="radioSelectedButton()">
+            </ion-radio>
+          </ion-item>
+        </ion-col>
+        <ion-col size="1" align-self-center>
+          <ion-icon color="primary" name='trash' (click)=alertDelteForItem(item.address_id)>
+          </ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-radio-group>
+  </ion-grid>
+</ion-content>
+<!------ footer------->
+<ion-footer no-border>
+  <ion-button expand="full" class="btnSubmit" block color="primary" type="submit" [disabled]="!isenabled"
+    (click)="getSelectedRadioBtn()">
+    <ion-icon slot="end" name="arrow-round-forward"></ion-icon>
+    Select Payment Method
+  </ion-button>
+</ion-footer>
+<!-- <ion-footer no-border>
+    <ion-button expand="full" class="btnSubmit" block color="primary" type="submit" [disabled]="!isenabled"
+      (click)="getSelectedRadioBtn()">
+      <ion-icon slot="end" name="arrow-round-forward"></ion-icon>
+      Select Payment Method
+    </ion-button>
+  </ion-footer> -->

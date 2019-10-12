@@ -1,0 +1,95 @@
+.class-bg {
+  --color: #fff;
+  --background: none;
+  background: url(../../assets/img/bg.jpg) 0 0/100% 100% no-repeat;
+  background-size: cover;
+}
+
+.attendanceSystem {
+  text-align: center;
+}
+.toolBar {
+  --background: transparent;
+  color: white;
+}
+.btnSubmit {
+  text-align: center;
+  // border-radius: 50px;
+  // background-color: ;
+  width: 85%;
+  margin-left: 6%;
+  height: 45px;
+  margin-top: 7%;
+}
+.divFormBuilder {
+  margin-top: 50px;
+}
+.head {
+  display: block;
+  width: 70%;
+  height: 20%;
+  margin-top: 20%;
+  margin-bottom: -20%;
+  margin-right: 10%;
+}
+.head h1 {
+  font-size: 7vh !important;
+  font-weight: lighter !important;
+  font-family: "lato";
+}
+.inputs1 {
+  width: 85%;
+  opacity: 0.6;
+  margin-left: 7%;
+  margin-top: 20%;
+}
+.inputs2 {
+  width: 85%;
+  opacity: 0.6;
+  margin-left: 7%;
+  margin-top: 3%;
+}
+.inputsBox {
+  position: relative;
+  background-color: #f2f2f2;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border-bottom-color: transparent;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+ion-item {
+  position: absolute;
+  ion-input {
+    color: black;
+    font-family: lato;
+  }
+  ion-label {
+    color: black;
+    font-family: lato;
+  }
+}
+.inputsBoxValidation{
+  position: relative;  
+  box-sizing: border-box;
+  border-radius: 8px;
+  border-bottom-color: transparent;
+  background-color: transparent;
+  font-family: lato;
+}
+.inputsBoxValidation ion-item {
+  position: absolute;
+  ion-input {
+      color:black;
+      font-family: lato;
+  }
+  ion-label {
+      color:black;
+      font-family: lato;
+  }
+}
+.toolbar {
+  --background: transparent;
+}
+.item {
+  --border-radius: 6px;
+}
