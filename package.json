@@ -40,7 +40,7 @@
     "angularfire2": "^5.2.1",
     "com.telerik.plugins.nativepagetransitions": "^0.6.5",
     "cordova-android": "^8.1.0",
-    "cordova-browser": "5.0.4",
+    "cordova-browser": "6.0.0",
     "cordova-ios": "5.0.1",
     "cordova-plugin-advanced-http": "^2.2.0",
     "cordova-plugin-app-version": "^0.1.9",
